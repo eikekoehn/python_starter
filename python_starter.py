@@ -318,9 +318,137 @@ plt.show()
 # This is just a handful of options that have been presented above and it would be unnecessary and super exhausting to list all posible options because there are just so many. The page of the matplotlib package has a very useful website, on which you can easily look up everything that is part of matplotlib. So here is the link, it'll also appear as a first result on Google if you type in matplotlib: "matplotlib.org" 
 
 
-##
+
+##########################################################
+###### CHAPTER 5 - Statements, Conditions and Loops ######
+##########################################################
+
+## 5.0 - The if condition
+# A fundamental basic of programming are statements. For example you can make the computer do something if a certain statement is true. 
+# For example, you could set yourself a nerdy alarm clock by writing
+wake_up_time = 8
+time = 8
+if time == wake_up_time:
+    print('Wake up!')
+
+# If you want to check multiple statements together, you can use the elif and else commands.
+if time == 7:
+    print('Stay in bed!')
+elif time == 7.5:
+    print('Start snoozing')
+else:
+    print('Get up!')
+    
+## 5.1. - The for loop
+# Now say you have a list of times 
+times = [5,6,7,8]
+# and you want to check each time whether it matches the wake-up time (8 o'clock), then you can ran a so-called for loop over the times list
+wake_up_time = 8
+for i in times:
+    if i == wake_up_time:
+        print(str(i)+" o'clock: Time to wake up!")
+    else:
+        print(str(i)+" o'clock: Continue sleeping!")    
+
+## 5.2 - The while statement
+# Away from alarm clocks, lets check out the Fibonacci series. 
+# Say you want to have your computer calculate the Fibonacci series, but only to a certain number. For example, we want an upper limit of 10000.
+# Then we could use a socalled while loop to let the computer do this iteratively.
+upper_limit = 10000
+fib = [0,1] # initialize the series 
+
+while fib[-1]+fib[-2] <= upper_limit:
+    fib.append(fib[-1]+fib[-2])
+print(fib)
+
+# For some reson you want to let your Fibonacci series for a longer time, but only to the point, where the difference between the last two entries is smaller than 10000.
+upper_limit = 1e6   # choose a randomly large number, that allows for the while statement to definitely keep running, no matter what happens inside the loop
+max_diff = 10000 # max difference
+
+fib2 = [0,1] # initialize the series 
+
+# Again a while statement can help
+while fib2[-1]+fib2[-2] <= upper_limit:
+    if fib2[-1]-fib2[-2] > max_diff:  # check for difference between last two entries
+        break   # interrupt and leave while loop.
+    else:
+        fib2.append(fib2[-1]+fib2[-2]) 
+print(fib2)
 
 
-#here is a useful function to create a list:
-list2 = range(5) # gives you a list with integers from 0 to 4
-print(type(list2))
+## 5.3 - List comprehension
+# Python has the nice feature of allowing for shorter notations in lists
+a = [0,1,2,3,4,5]
+b = [x**2 for x in a]
+print(b)
+# thereby you can compress a two or three line piece of code into a one-liner.
+
+
+## 5.4 - Useful functions for the usage of loops
+#here is a useful function to create a variable to loop over, which has just increasing values
+range_example = range(5) # gives you a range class which is similar to a list with integers from 0 to 4
+print(type(range_example))
+# example:
+for i in range(5):
+    print(i**2)
+    
+# Another useful function is the enumerate function. Say you have a random list
+enumerate_example_list = [0,10,2,7,2,3]
+# and now you want to perform something, both with the values and their position in the list.
+# Then you can use the enumerate function to build a loop
+for idx,val in enumerate(enumerate_example_list):
+    print('At index '+str(idx)+' we have the value '+str(val))
+    
+    
+#########################################################
+###### CHAPTER 6 - Reading in and saving datafiles ######
+#########################################################
+# I'll leave this blank for the moment.
+
+###############################################
+###### CHAPTER 7 - Handling NetCDF Files ######
+###############################################
+# An important format of data is the NetCDF Format.
+# For example, if there is no US government shutdown, then one should be able to download so-called World Ocean Atlas data from the NOAA website, under the following link:
+# https://data.nodc.noaa.gov/thredds/catalog/ncei/woa/temperature/decav/1.00/catalog.html?dataset=ncei/woa/temperature/decav/1.00/woa18_decav_t00_01.nc
+# This is the newest version of the World Ocean Atlas, a standard climatology for the ocean.
+# If you select the file on the HTTPServer, then an automatic download should start.
+# Once the download is finished, you can read the file using the following packages and commands:
+import xarray as xr   # a package that can handle NetCDF files
+#xr.open_dataset('/path/to/file/woa18_decav_t00_01.nc')
+data = xr.open_dataset('/Users/ekoehn/Downloads/woa18_decav_t00_01.nc',decode_times=False) # normally you don't have to use the "decode_times=False" argument.
+
+# with
+print(data.keys)   # you can look at all the variables and dimensions defined inside the file
+
+# the mean temperature is for example given by the following variable:
+print(data.t_an)
+# with the time dimension 1, the depth dimension 102, and the latitude dimension 180 and longitude dimension 360
+
+# you can look at the data by typing
+temp = data.t_an.values
+print(temp)
+
+
+################################################
+###### CHAPTER 8 - Other helpful packages ######
+################################################
+# for doing statistical anlyses, another helpful package is "scipy". You can have a look at it, using 
+import scipy as sp
+
+
+import os  # with this package, you can use commands from the operating system within python. this can become interesting if you want to manage files using python. 
+import sys  #This module provides a number of functions and variables that can be used to manipulate different parts of the Python runtime environment.
+
+
+###########################################
+###### CHAPTER 9 - Jupyter notebooks ######
+###########################################
+# under the following link, you will find the so-called Jupyter notebooks. They are very nice to use and make it easier to follow what one does in the code. Check them out and maybe you want to switch to Jupyter!
+# https://jupyter.org/
+
+
+#### Final remarks:
+#Now, that you have gone through a very brief introduction to Python, you can also check out the more extensive Python primer on
+#https://www.learnpython.org/
+# In general, if questions arise, the answer is somewhere on the internet. Someone has for sure has/had the same problem. 
