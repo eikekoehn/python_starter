@@ -451,4 +451,9 @@ import sys  #This module provides a number of functions and variables that can b
 #### Final remarks:
 #Now, that you have gone through a very brief introduction to Python, you can also check out the more extensive Python primer on
 #https://www.learnpython.org/
-# In general, if questions arise, the answer is somewhere on the internet. Someone has for sure has/had the same problem. 
+# In general, if questions arise, the answer is somewhere on the internet. Someone has for sure has/had the same problem.
+
+###########################################
+######## CHAPTER 10 - BUGS ###############
+###########################################
+# This part is just about using git 
