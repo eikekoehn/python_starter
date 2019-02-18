@@ -4,6 +4,8 @@ It is meant to help students and scientists unfamiliar with Python as a Progammi
 author: Eike Köhn
 date: 22.12.2018
 
+updated: 18.2.2019
+
 The file is structured in different chapters, each covering different topics.
 This is the table of contents:
 
@@ -31,10 +33,25 @@ To go through it, just execute the lines, line by line, and see what happens. En
 # It is then important to know that Python in itself is just a Programming language that is able to interpret the words and signs that you write. So you could just write a Python program just in your computer's text-editor (any editor is fine) abd save it with the file suffix ".py". Then, if you actually want to run the program, you need your Python interpreter that tries to make sense of what you write and actually execute the functions etc. that are featured in your program. There are many different Programs, that combine the editor and the interpreter into one interface. Examples for these are Spyder or Pyzo. The nice thing about them is, that you can write your code in the interfaces editor and directly execute the code in there.
 # As many people work on different topics using Python as a programming language, there already exists a huge amount of functions etc. that do specific things. For example, if you want to plot your data, you could really start from scratch and tell you computer to create an interface that is able to show images, configure the interface in the correct way etc. This would be a quite tedious thing to do and would keep you from doing science. Instead one can just use so-called "modules" or "packages". They have all the necessary things inside and you can just use them as a working bundle. Regarding the plotting example, the most commonly used package is the "matplotlib" package. But more to this later in Chapter 4. 
 # Because certain modules require within themselves other modules, things can get confusing quite quickly. And there are a lot of modules! But don't woryy, there is a nice solution for this, called a package or module manager. One example of this is "conda". If you need a new module (or update the module version), it will make sure that all dependencies are also installed and present in their right version. Via conda you can also install the python interpreter itself. If you decide to use "conda", then you have the chance between "Anaconda" and "Miniconda". When you install Anaconda, many packages will be installed right away, making Anaconda quite consuming regarding storage (around 2 or 3 GB, I think). Many of those modules, you will never need. In constrast, Miniconda is rather small. Only the most basic modules are included and one needs to individually install modules when necessary. I prefer Miniconda, as you have a good overview of what you have installed and what not. Also, I like to save space on the disks.
-# Okay, so now we know what we need: 1) an interface to write and execute code (e.g. Spyder) and 2) a module manager (conda) to install/update modules and packages as well as the python interpreter (Python 3.5).
+# Okay, so now we know what we need: 1) an interface to write and execute code (e.g. Spyder) and 2) a package manager (conda) to install/update packages as well as the python interpreter (Python 3.5).
 
 # This is the intallation procedure:
+# If you are working on the UP workstations at ETH, there should be the module "miniconda3" already available (listed if you type "module avail"). You can load miniconda3 typing "module load miniconda3" into the command line of the shell. You can check your loaded modules with "module list". Once miniconda3 is loaded it is advisable to create your own python environment. For this you just type "conda create name_of_environment". Then, within this environment you can install and update all the packages you need, without changing the amounts and versions of packages in the commonly shared package inventory. 
+# You can change into the newly created environment using "source activate name_of_environment". 
+# In there, you can then start python, by typing "python3", "ipython" or "spyder". In case you need an additional package, you can install it using "conda install name_of_package". With this you could install spyder etc.
 
+# If you are working on a different computer on which you have admin rights, for example your own computer, there you don't necessarily need to do the environment business. But in some cases, if you have multiple applications for using python, it might be a good idea to use different python environments for different applications. But that is up to you.
+# In any case, what you should do is get anaconda or miniconda. 
+# Then, you only need to make sure that the python you are using is the python associated with ana-/miniconda. If you type in "which python" in your shell, then it should tell you which python program is used when typing "python". On Mac, python is already pre-installed, so that it might use that one, instead of the newly installed conda-related python. This "system python" should lie in "/usr/bin/python", which would be the output from your "which python" command. 
+#However, in your ".bash-profile" file, the installation of miniconda/anaconda should have added the lines
+# added by Miniconda3 4.2.12 installer
+# export PATH="/Users/usrname/miniconda3/bin:$PATH"
+
+# With these lines, typing "python" should rather access the ana/miniconda python.
+# So if you have installed mini/anaconda, and if you have restarted the shell (to reload the .bash-profile file), typing "which python" should lead to some prompt similar to 
+# "/Users/usrname/miniconda3/bin/python"
+
+# If it does not, then something is not completely right and it would be good to fix this inconsistency.
 
 # In case you encounter problems or have questions, there is lots of help on the internet or even within python!
 
